@@ -8,14 +8,14 @@ class TryOut
 
   attr_accessor :first_name
 
-  def initialize(first_name, middle_name = nil, last_name)
+  def initialize(first_name, middle_name = "", last_name)
     @first_name = first_name
     @middle_name = middle_name
     @last_name = last_name
   end
 
   def full_name
-    [first_name, middle_name, last_name].compact.join(" ")
+    [first_name, middle_name, last_name].reject(&:empty?).join(" ")
   end
 
   def upcase_full_name
@@ -24,10 +24,18 @@ class TryOut
 
   def upcase_full_name!
     upcase_names!
+
+    full_name
   end
 
   private
 
-  attr_reader :middle_name,
-              :last_name
+  attr_accessor :middle_name,
+                :last_name
+
+  def upcase_names!
+    self.first_name = first_name.upcase
+    self.middle_name = middle_name.upcase
+    self.last_name = last_name.upcase
+  end
 end

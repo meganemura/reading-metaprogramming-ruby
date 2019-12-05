@@ -13,7 +13,9 @@
     2. 定期的に作業用ブランチにmasterをmergeしてください
     3. リポジトリのデフォルトブランチを、作成したものに変更してください。masterは必ず失敗するので、バッジの色が常にグレーになってしまいます。
 3. バッジのURIを次のように変更します `![](https://github.com/<YOUR_NAME>/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=<YOUR_BRANCH_NAME>)`
-4. ここまでの変更をpushします
+4. forkしたリポジトリのGitHub Actionsを有効化します
+    1. 緑色のボタンを押すだけで大丈夫なはず
+5. ここまでの変更をpushします
 
 # このリポジトリの目的
 
@@ -34,4 +36,13 @@ forkした方々のなかから、ここに常に自分のバッジを表示し�
 
 | Name | Badge |
 | ---- | ----- |
-| [meganemura](https://github.com/meganemura) | ![](https://github.com/meganemura/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve) |
+| [meganemura](https://github.com/meganemura) | [![](https://github.com/meganemura/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/meganemura/reading-metaprogramming-ruby) |
+| [mserizawa](https://github.com/mserizawa) | [![](https://github.com/mserizawa/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=answer)](https://github.com/mserizawa/reading-metaprogramming-ruby) |
+| [wakasa51](https://github.com/wakasa51) | [![](https://github.com/wakasa51/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/wakasa51/reading-metaprogramming-ruby) |
+| [morizumi](https://github.com/t-mori23) | [![](https://github.com/t-mori23/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=kotae)](https://github.com/t-mori23/reading-metaprogramming-ruby) |
+| [moonstruckdrops](https://github.com/moonstruckdrops) | [![](https://github.com/moonstruckdrops/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/moonstruckdrops/reading-metaprogramming-ruby) |
+| [ykarakita](https://github.com/ykarakita) | [![](https://github.com/ykarakita/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/ykarakita/reading-metaprogramming-ruby) |
+| [ringo](https://github.com/aomoriringo) | [![](https://github.com/aomoriringo/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/aomoriringo/reading-metaprogramming-ruby) |
+| [kabetch](https://github.com/MasafumiKabe) | [![](https://github.com/MasafumiKabe/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/MasafumiKabe/reading-metaprogramming-ruby) |
+| [kouryou](https://github.com/kouryou) | [![](https://github.com/kouryou/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/kouryou/reading-metaprogramming-ruby) |
+| [shunhikita](https://github.com/shunhikita) | [![](https://github.com/shunhikita/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/shunhikita/reading-metaprogramming-ruby) |

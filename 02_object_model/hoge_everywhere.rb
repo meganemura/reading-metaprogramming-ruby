@@ -7,38 +7,8 @@
 # - Hash
 # - TrueClass
 
-class String
-  def hoge
-    "hoge"
-  end
-end
-
-class Integer
-  def hoge
-    "hoge"
-  end
-end
-
-class Numeric
-  def hoge
-    "hoge"
-  end
-end
-
-class Class
-  def hoge
-    "hoge"
-  end
-end
-
-class Hash
-  def hoge
-    "hoge"
-  end
-end
-
-class TrueClass
-  def hoge
+[String, Integer, Numeric, Class, Hash, TrueClass].each do |klass|
+  klass.define_method("hoge") do
     "hoge"
   end
 end

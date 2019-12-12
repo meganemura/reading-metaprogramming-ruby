@@ -30,6 +30,7 @@ end
 # - C1.ancestors.first(2) が [C1, M1] となる
 # - C1.new.name が 'C1' を返す
 class C1
+  include M1
   def name
     'C1'
   end
@@ -41,6 +42,7 @@ end
 # - C2.ancestors.first(2) が [M1, C2] となる
 # - C2.new.name が 'M1' を返す
 class C2
+  prepend M1
   def name
     'C2'
   end
@@ -51,11 +53,18 @@ end
 # 次の動作をする C3 class, MySuperClass class を実装する
 # - C3.ancestors.first(6) が [M1, C3, M2, M3, MySuperClass, M4] となる
 # - C3.new.name が 'M1' を返す
-class C3
+class MySuperClass
+  include M4
+  prepend M3
+end
+class C3 < MySuperClass
+  include M2
+  prepend M1
   def name
     'C3'
   end
 end
+# MySuperClass が class であることのテストないと全部モジュールにもできるな
 
 
 # Q4.
@@ -68,10 +77,18 @@ end
 #   c4.increment # => "3"
 # - 定義済みのメソッド (value, value=) は private のままとなっている
 class C4
+  def increment
+    self.value = value || 0
+    self.value = value + 1
+    value.to_s
+  end
   private
 
   attr_accessor :value
 end
+# self を付けないといけない場合と付けてはいけない場合について意識してコードを書く
+# private `self` 使えないためのやっかいごとがいろいろありますよということ
+# ruby 2.7 だとこの書き方も出来ますよというのを伝えたい
 
 # Q5.
 # 次の動作をする M1Refinements module を実装する
@@ -80,6 +97,11 @@ end
 # - C5.new.another_name が文字列 "M1" を返す
 # - C5.new.other_name が文字列 "Refined M1" を返す
 module M1Refinements
+  refine M1 do
+    def name
+      "Refined M1"
+    end
+  end
 end
 
 class C5
@@ -95,6 +117,7 @@ class C5
     name
   end
 end
+# NOTE: another_name と other_name とで呼び出す name が異なることを知ってほしい
 
 
 # Q6.
@@ -104,4 +127,12 @@ end
 class C6
   include M1
   using M1Refinements
+
+  def name
+    super
+  end
 end
+# name が "Refined M1" を返すように実装してもいいのだけれど
+# 継承チェイン上で上にあるということがわかれば super 使ってくれるはず...
+#
+# あと、Refinement したメソッドをちゃんと呼んでいること、のテストってどうすればいいのか?

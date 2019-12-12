@@ -78,9 +78,17 @@ end
 # - 定義済みのメソッド (value, value=) は private のままとなっている
 class C4
   def increment
-    self.value = value || 0
-    self.value = value + 1
-    value.to_s
+    if RUBY_VERSION >= "2.7.0"
+      self.value ||= 0
+      self.value += 1
+
+      value.to_s
+    else
+      self.value = value || 0
+      self.value = value + 1
+
+      value.to_s
+    end
   end
   private
 

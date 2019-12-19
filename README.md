@@ -28,7 +28,29 @@
 
 # 読書会の進め方
 
-TBD
+## 登場人物
+
+要約を書く人： 修行僧の中から事前に一人選出され、テキストの課題の範囲を要約してレビューを受ける
+レビュア： ヌンチャク使いの中から事前に一人選出され、要約を書く人の書いた要約をレビューする
+作成者： テキストの範囲を理解していれば通過できるテストを作成する
+オーナー： この会を主催する人
+
+
+## 次回までのテキストの準備
+
+1. 開始の前々日までに、要約を書く人はこのリポジトリにプルリクを出す
+2. レビュアは、前日までに要約をレビューし、必要があれば更新をする
+3. オーナーは、レビュアーのapproveした要約をマージする
+
+## 次回までの問題の準備
+
+1. 作成者は、前々日までに問題を作成し、このリポジトリにプルリクを出す
+2. オーナーは、問題をレビューし、修正した後マージする
+
+## 開催までの準備
+
+1. 参加者は、事前にmasterを同期し、自身の解決用ブランチにマージし、pushしてテストをレッドにしておく
+2. テキストを読み込んでおく
 
 # Badgesのリスト（任意）
 
@@ -47,3 +69,4 @@ forkした方々のなかから、ここに常に自分のバッジを表示し�
 | [kouryou](https://github.com/kouryou) | [![](https://github.com/kouryou/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/kouryou/reading-metaprogramming-ruby) |
 | [shunhikita](https://github.com/shunhikita) | [![](https://github.com/shunhikita/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=solve)](https://github.com/shunhikita/reading-metaprogramming-ruby) |
 | [yoshinarl](https://github.com/shunhikita) | [![](https://github.com/yoshinarl/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=yoshinarl-reading)](https://github.com/yoshinarl/reading-metaprogramming-ruby) |
+| [aAnzai2017](https://github.com/aAnzai2017) | [![](https://github.com/aAnzai2017/reading-metaprogramming-ruby/workflows/Ruby/badge.svg?branch=yatteiki)](https://github.com/aAnzai2017/reading-metaprogramming-ruby) |

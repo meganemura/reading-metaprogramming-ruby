@@ -5,7 +5,19 @@ TryOver3 = Module.new
 # - `test_` から始まるインスタンスメソッドが実行された場合、このクラスは `run_test` メソッドを実行する
 # - `test_` メソッドがこのクラスに実装されていなくても `test_` から始まるメッセージに応答することができる
 # - TryOver3::A1 には `test_` から始まるインスタンスメソッドが定義されていない
+class TryOver3::A1
+  def run_test
+    nil
+  end
 
+  def method_missing(name, *args)
+    if name =~ /^test_/
+      return run_test
+    end
+
+    super
+  end
+end
 
 # Q2
 # 以下要件を満たす TryOver3::A2Proxy クラスを作成してください。
@@ -18,6 +30,27 @@ class TryOver3::A2
   end
 end
 
+class TryOver3::A2Proxy
+  def initialize(source)
+    @source = source
+  end
+
+  private
+
+  def method_missing(name, *args)
+    if source.respond_to?(name)
+      return source.public_send(name, *args)
+    end
+
+    super
+  end
+
+  def respond_to_missing?(method, include_private = false)
+    source.respond_to?(method) || super
+  end
+
+  attr_reader :source
+end
 
 # Q3
 # 前回 OriginalAccessor の my_attr_accessor で定義した getter/setter に boolean の値が入っている場合には #{name}? が定義されるようなモジュールを実装しました。
@@ -31,11 +64,21 @@ module TryOver3::OriginalAccessor2
       end
 
       define_method "#{attr_sym}=" do |value|
-        if [true, false].include?(value) && !respond_to?("#{attr_sym}?")
-          self.class.define_method "#{attr_sym}?" do
-            @attr == true
+        if [true, false].include?(value)
+          if !respond_to?("#{attr_sym}?")
+            self.class.define_method "#{attr_sym}?" do
+              @attr == true
+            end
+          end
+        else
+          if respond_to?(attr_sym)
+            self.class.undef_method(attr_sym)
+          end
+          if respond_to?("#{attr_sym}?")
+            self.class.undef_method("#{attr_sym}?")
           end
         end
+
         @attr = value
       end
     end
@@ -48,6 +91,27 @@ end
 # TryOver3::A4.runners = [:Hoge]
 # TryOver3::A4::Hoge.run
 # # => "run Hoge"
+class TryOver3::A4
+  def self.runners=(args)
+    @runners = args
+  end
+
+  def self.runners
+    @runners
+  end
+
+  def self.const_missing(const_name)
+    return super unless self.runners.include?(const_name)
+
+    klass = Class.new do |c|
+      c.define_singleton_method "run" do
+        "run #{const_name}"
+      end
+    end
+
+    const_set(const_name, klass)
+  end
+end
 
 
 # Q5. チャレンジ問題！ 挑戦する方はテストの skip を外して挑戦してみてください。

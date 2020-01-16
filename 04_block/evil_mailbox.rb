@@ -42,19 +42,4 @@ class EvilMailbox
       [sender, body]
     end
   end
-
-  #def send_mail(to, body)
-  #  result = @obj.send_mail(to, body)
-  #
-  #  yield(result) if block_given?
-  #
-  #  nil
-  #end
-
-  #def receive_mail
-  #  sender, body = @obj.receive_mail
-  #
-  #  [sender, body]
-  #end
-
 end

@@ -35,6 +35,8 @@ class TestEvilMailbox < MiniTest::Test
   end
 
   def test_send_mail_exec_block_with_result_true
+    skip
+
     mb, _ = evil_mailbox do
       expect :send_mail, true, ["ppyd", "hello"]
     end
@@ -46,6 +48,8 @@ class TestEvilMailbox < MiniTest::Test
   end
 
   def test_send_mail_exec_block_with_result_false
+    skip
+
     mb, _ = evil_mailbox do
       expect :send_mail, false, ["ppyd", "hello"]
     end

@@ -37,3 +37,53 @@
 # obj.imitated_method
 # obj.called_times(:imitated_method) #=> 2
 # ```
+
+module SimpleMock
+  class << self
+    def mock(object)
+      object.extend(SimpleMock)
+    end
+
+    def new(object = nil)
+      mock(Object.new)
+    end
+  end
+
+  def expects(method_name, expected)
+    define_singleton_method(method_name) do
+      puts 'mocked object called'
+
+      expected
+    end
+  end
+
+  def watch(method_name)
+    instance_variable_set(watch_variable_name(method_name), 0)
+
+    original = method(method_name)
+
+    define_singleton_method(method_name) do |*args|
+      increment_watch_variable(method_name)
+
+      original.call
+    end
+  end
+
+  def called_times(method_name)
+    instance_variable_get(watch_variable_name(method_name))
+  end
+
+  def increment_watch_variable(method_name)
+    times = called_times(method_name)
+
+    return if times.nil?
+
+    instance_variable_set(watch_variable_name(method_name), times + 1)
+  end
+
+  private
+
+  def watch_variable_name(method_name)
+    "@_watch_#{method_name}"
+  end
+end
